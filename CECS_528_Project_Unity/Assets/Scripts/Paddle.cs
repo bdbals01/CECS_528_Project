@@ -8,30 +8,67 @@ public class Paddle : MonoBehaviour {
 
 	private Ball ball;
 	
-	void Start () {
+	void Start ()
+    {
 		ball = GameObject.FindObjectOfType<Ball>();
 	}
 		
 	// Update is called once per frame
-	void Update () {
-		if (!autoPlay) {
-			MoveWithMouse();
-		} else {
-			AutoPlay();
-		}
+	void Update ()
+    {
+        MoveWithArrowKeys();
 	}
-	
-	void AutoPlay() {
-		Vector3 paddlePos = new Vector3 (0.5f, this.transform.position.y, 0f);
-		Vector3 ballPos = ball.transform.position;
-		paddlePos.x = Mathf.Clamp(ballPos.x, minX, maxX);
-		this.transform.position = paddlePos;
-	}
-	
-	void MoveWithMouse () {
-		Vector3 paddlePos = new Vector3 (0.5f, this.transform.position.y, 0f);
-		float mousePosInBlocks = Input.mousePosition.x / Screen.width * 16;
-		paddlePos.x = Mathf.Clamp(mousePosInBlocks, minX, maxX);
-		this.transform.position = paddlePos;
-	}
+
+    void MoveWithArrowKeys()
+    {
+        if(this.transform.position.x >= minX && this.transform.position.x <= maxX)
+        {
+            Vector3 direction = MoveDirectionBoth();
+            this.transform.Translate(direction * 10 * Time.deltaTime);
+        }
+        else if(this.transform.position.x > maxX)
+        {
+            Vector3 direction = MoveDirectionLeft();
+            this.transform.Translate(direction * 10 * Time.deltaTime);
+        }
+        else if(this.transform.position.x < minX)
+        {
+            Vector3 direction = MoveDirectionRight();
+            this.transform.Translate(direction * 10 * Time.deltaTime);
+        }
+    }
+
+    private Vector3 MoveDirectionBoth()
+    {
+        Vector3 direction = Vector3.zero;
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            direction.x -= 1.0f;
+        }
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            direction.x += 1.0f;
+        }
+        return direction.normalized;
+    }
+
+    private Vector3 MoveDirectionLeft()
+    {
+        Vector3 direction = Vector3.zero;
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            direction.x -= 1.0f;
+        }
+        return direction.normalized;
+    }
+
+    private Vector3 MoveDirectionRight()
+    {
+        Vector3 direction = Vector3.zero;
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            direction.x += 1.0f;
+        }
+        return direction.normalized;
+    }
 }
