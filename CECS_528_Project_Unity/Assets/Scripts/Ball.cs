@@ -20,8 +20,8 @@ public class Ball : MonoBehaviour {
 			this.transform.position = paddle.transform.position + paddleToBallVector;
 			
 			// Wait for a mouse press to launch.
-			if (Input.GetMouseButtonDown(0)) {
-				print ("Mouse clicked, launch ball");
+			if (Input.GetKeyDown("space")) {
+				print ("Spacebar pressed, launch ball");
 				hasStarted = true;
 				this.GetComponent<Rigidbody2D>().velocity = new Vector2 (2f, 10f);
 			}
