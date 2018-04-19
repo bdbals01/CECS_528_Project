@@ -41,11 +41,11 @@ public class Paddle2 : MonoBehaviour
     private Vector3 MoveDirectionBoth()
     {
         Vector3 direction = Vector3.zero;
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
             direction.x -= 1.0f;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
             direction.x += 1.0f;
         }
@@ -55,7 +55,7 @@ public class Paddle2 : MonoBehaviour
     private Vector3 MoveDirectionUp()
     {
         Vector3 direction = Vector3.zero;
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
             direction.x -= 1.0f;
         }
@@ -65,7 +65,7 @@ public class Paddle2 : MonoBehaviour
     private Vector3 MoveDirectionDown()
     {
         Vector3 direction = Vector3.zero;
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
             direction.x += 1.0f;
         }

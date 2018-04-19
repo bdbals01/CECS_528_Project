@@ -1652,7 +1652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPlay: 0
-  minX: 1.2
+  minX: 1.3
   maxX: 10.7
 --- !u!1 &1019048924
 GameObject:
@@ -2133,7 +2133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPlay: 0
-  minX: 1.2
+  minX: 1.3
   maxX: 10.7
 --- !u!1001 &1496326826
 Prefab:
