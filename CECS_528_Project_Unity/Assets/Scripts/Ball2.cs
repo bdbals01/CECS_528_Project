@@ -28,7 +28,7 @@ public class Ball2 : MonoBehaviour
             {
                 print("Spacebar pressed, launch ball");
                 hasStarted = true;
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(10f, 0f);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(7f, 0f);
             }
         }
     }

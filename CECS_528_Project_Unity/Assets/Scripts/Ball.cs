@@ -23,7 +23,7 @@ public class Ball : MonoBehaviour {
 			if (Input.GetKeyDown("space")) {
 				print ("Spacebar pressed, launch ball");
 				hasStarted = true;
-				this.GetComponent<Rigidbody2D>().velocity = new Vector2 (2f, 10f);
+				this.GetComponent<Rigidbody2D>().velocity = new Vector2 (0f, 7f);
 			}
 		}
 	}
