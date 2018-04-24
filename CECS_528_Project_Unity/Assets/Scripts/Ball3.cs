@@ -33,7 +33,7 @@ public class Ball3 : MonoBehaviour
             if (GameObject.FindObjectsOfType<Ball3>().Length > 1)
             {
                 hasStarted = true;
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(-7f, 0f);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(7f, 0f);
             }
         }
     }
