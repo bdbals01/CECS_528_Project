@@ -11,6 +11,7 @@ public class Brick : MonoBehaviour {
 	private int timesHit;
 	private LevelManager levelManager;
 	private bool isBreakable;
+    private GameObject ball;
 	
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class Brick : MonoBehaviour {
 		if (isBreakable) {
 			breakableCount++;
 		}
-		
+        ball = GameObject.Find("Ball");
 		timesHit = 0;
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
 	}
@@ -32,15 +33,16 @@ public class Brick : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D col) {
 		AudioSource.PlayClipAtPoint (crack, transform.position, 0.8f);
 		if (isBreakable) {
-			HandleHits();
+			HandleHits(col);
 		}
 	}
 	
-	void HandleHits () {
+	void HandleHits (Collision2D col) {
 		timesHit++;
 		int maxHits = hitSprites.Length + 1;
 		if (timesHit >= maxHits) {
 			breakableCount--;
+            PowerUp(col);
 			levelManager.BrickDestoyed();
 			PuffSmoke();
 			Destroy(gameObject);
@@ -68,4 +70,39 @@ public class Brick : MonoBehaviour {
 	void SimulateWin () {
 		levelManager.LoadNextLevel();
 	}
+    void PowerUp(Collision2D col)
+    {
+        var number = Random.Range(1, 20);
+        if(number >1 && number < 5)
+        {
+            GameObject newball = (GameObject)Instantiate(col.gameObject);
+            if (col.gameObject.name.StartsWith("Ball 2"))
+            {
+                newball.transform.localPosition = col.gameObject.transform.localPosition;
+            }
+            if (col.gameObject.name.StartsWith("Ball 2"))
+            {
+                newball.transform.localPosition = col.gameObject.transform.localPosition;
+            }
+            else
+            {
+                newball.transform.localPosition = this.transform.localPosition;
+            }
+            
+        }
+        else if (number > 16 && number <20)
+        {
+            print("ChangingSize" );
+            if(col.gameObject.name.StartsWith("Ball 2"))
+            {
+                col.transform.localScale = new Vector3(.75f, .75f, .75f);
+            }
+            else
+            {
+                col.transform.localScale = new Vector3(2f, 2f, 2f);
+            }
+            
+        }
+        
+    }
 }

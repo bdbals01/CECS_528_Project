@@ -25,15 +25,22 @@ public class Ball : MonoBehaviour {
 				hasStarted = true;
 				this.GetComponent<Rigidbody2D>().velocity = new Vector2 (0f, 7f);
 			}
+            if(GameObject.FindObjectsOfType<Ball>().Length > 1)
+            {
+                hasStarted = true;
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 7f);
+            }
 		}
 	}
 	
 	void OnCollisionEnter2D (Collision2D collision) {
-		// Ball does not trigger sound when brick is destoyed.
-		// Not 100% sure why, possibly because brick isn't there.
-		Vector2 tweak = new Vector2 (Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
-		
-		if (hasStarted) {	
+        // Ball does not trigger sound when brick is destoyed.
+        // Not 100% sure why, possibly because brick isn't there.
+        //Debug.Log(collision.gameObject.name.ToString());
+        Vector2 tweak = new Vector2 (Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
+        
+        
+        if (hasStarted) {	
 			GetComponent<AudioSource>().Play();
 			GetComponent<Rigidbody2D>().velocity += tweak;
 		}
