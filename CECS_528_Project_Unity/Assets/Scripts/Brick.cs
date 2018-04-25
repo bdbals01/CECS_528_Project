@@ -95,7 +95,7 @@ public class Brick : MonoBehaviour {
             print("ChangingSize" );
             if(col.gameObject.name.StartsWith("Ball 2"))
             {
-                col.transform.localScale = new Vector3(.75f, .75f, .75f);
+                col.transform.localScale = new Vector3(.3f, .3f, .3f);
             }
             else
             {
